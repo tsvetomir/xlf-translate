@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="af2ccf4b5dba59616e92cf1531505af02da8f6d2" datatype="html">
+        <source>Non-related string</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="63587ed5b07c28dbb733d562ffeca4ee181c37c6" datatype="html">
+        <source>Hello!</source>
+        <target/>
+        <note priority="1" from="description">localized-component-hello</note>
+      </trans-unit>
+      <trans-unit id="1c37c663587ed5b07c28dbb733d562ffeca4ee18" datatype="html">
+        <source>Good bye!</source>
+        <target/>
+        <note priority="1" from="description">localized-component-goodbye</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

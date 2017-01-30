@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+'use strict';
+
+const yaml = require('js-yaml');
+const fs = require('fs');
+const xml = require('xml2js');
+const util = require('util');
+const jp = require('jsonpath');
+
+const args = () => {
+    const argparse = require('argparse');
+    const parser = new argparse.ArgumentParser({
+      version: '0.1.0',
+      addHelp: true,
+      description: 'xlf-translate populates translation files based on keys'
+    });
+
+    parser.addArgument([ '-l', '--lang-file' ], {
+        help: 'file containing translations (YAML)',
+        required: true
+    });
+
+    parser.addArgument([ '-m', '--messages-file' ], {
+        help: 'messages file to process',
+        required: true
+    });
+
+    parser.addArgument([ '-f', '--force' ], {
+        help: 'overwrites existing translations',
+        defaultValue: false,
+        action: 'storeTrue'
+    });
+
+    return parser.parseArgs();
+}();
+
+const langData = fs.readFileSync(args.lang_file);
+const lang = yaml.safeLoad(langData);
+
+const messageData = fs.readFileSync(args.messages_file);
+const parser = new xml.Parser();
+parser.parseString(messageData, (err, result) => {
+    if (err) {
+        console.log('Oops, error occurred');
+        throw err;
+    }
+
+    const units = result.xliff.file[0].body[0]['trans-unit'];
+
+    const descs = units.filter(u => u.note)
+         .map(u => ({
+            target: u.target,
+            id: u.note.find(n => n['$'].from === 'description')['_']
+        }));
+
+    let stats = { count: 0, skip: 0 };
+    descs.forEach(d => {
+        const query = '$.' + d.id.replace(/-/g, '.');
+        const match = jp.query(lang, query);
+
+        if (match.length === 1) {
+            if (d.target[0] === '' || args.force) {
+                d.target[0] = match[0];
+                stats.count++;
+            } else if (!args.force) {
+                stats.skip++;
+            }
+        }
+    });
+
+    const builder = new xml.Builder();
+    const out = builder.buildObject(result);
+
+    fs.writeFileSync(args.messages_file, out);
+    console.log(`Done. Replaced ${stats.count} units, skipped ${stats.skip}.`);
+});
