@@ -1,9 +1,4 @@
 # xlf-translate
-Populate (.XLF) files with existing translations.
-
-**NO PUBLISHED VERSION YET**
-
-## Description
 
 Populate pre-defined translation strings in Angular 2 i18n message files.
 
@@ -42,12 +37,21 @@ localized:
 
 ```
 
+## Installation
+
+**NO PUBLISHED VERSION YET**
+
+`npm install -g xlf-translate`
+
 ## Usage
 
-```sh
-npm install -g xlf-translate
-xlf-translate --lang-file=lang/fr.yml --messages-file=messages.xlf
-```
+`xlf-translate --lang-file=lang/fr.yml --messages-file=messages.fr.xlf`
+
+This will populate all empty target elements in the `messages.xlf` file with matching translations. Non-empty target elements will be skipped to avoid overwriting user translations.
+
+You can also force overwriting all translations, regardless if empty or not:
+
+`xlf-translate --lang-file=lang/fr.yml --messages-file=messages.fr.xlf --force`
 
 ## See Also
 
