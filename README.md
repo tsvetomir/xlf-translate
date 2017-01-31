@@ -18,7 +18,7 @@ This utility makes use of the optional description tag to associate the message 
 <component i18n-hello="localized-component-hello" hello="Hello from Localized Component"></component>
 ```
 
-The key will end-up in the messages file:
+The key will end-up in the messages file as a "note from description":
 
 ```xml
 <trans-unit id="63587ed5b07c28dbb733d562ffeca4ee181c37c6" datatype="html">
@@ -32,7 +32,7 @@ It can be then looked-up in a manually populated language file to provide a targ
 
 ## Language Files
 
-The language files in YAML format and contain translations corresponding to the keys in the description.
+The language files are in YAML format and contain translations corresponding to the keys in the description.
 
 ```yaml
 localized:
