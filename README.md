@@ -24,7 +24,7 @@ The key will be persisted in the messages file:
 </trans-unit>
 ```
 
-We can be then look it up from a language file to provide a target translation.
+We can then look it up from a language file to provide a target translation.
 
 ## Language Files
 
@@ -49,6 +49,8 @@ localized:
 `xlf-translate --lang-file=lang/fr.yml --messages-file=messages.fr.xlf`
 
 This will populate all empty target elements in the `messages.xlf` file with matching translations. Non-empty target elements will be skipped to avoid overwriting user translations.
+
+> The file will be overwritten
 
 You can also force overwriting all translations, regardless if empty or not:
 
