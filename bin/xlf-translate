@@ -4,10 +4,9 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 const xml = require('xml2js');
-const util = require('util');
-const jp = require('jsonpath');
+const translate = require('../translate');
 
-const args = () => {
+const args = (() => {
     const argparse = require('argparse');
     const parser = new argparse.ArgumentParser({
       version: '0.1.0',
@@ -32,7 +31,7 @@ const args = () => {
     });
 
     return parser.parseArgs();
-}();
+})();
 
 const langData = fs.readFileSync(args.lang_file);
 const lang = yaml.safeLoad(langData);
@@ -45,28 +44,10 @@ parser.parseString(messageData, (err, result) => {
         throw err;
     }
 
-    const units = result.xliff.file[0].body[0]['trans-unit'];
+    //const stats = translate(result, lang, args.force);
 
-    const descs = units.filter(u => u.note)
-         .map(u => ({
-            target: u.target,
-            id: u.note.find(n => n['$'].from === 'description')['_']
-        }));
-
-    let stats = { count: 0, skip: 0 };
-    descs.forEach(d => {
-        const query = '$.' + d.id.replace(/-/g, '.');
-        const match = jp.query(lang, query);
-
-        if (match.length === 1) {
-            if (d.target[0] === '' || args.force) {
-                d.target[0] = match[0];
-                stats.count++;
-            } else if (!args.force) {
-                stats.skip++;
-            }
-        }
-    });
+    console.log(JSON.stringify(result, null, 2));
+    return
 
     const builder = new xml.Builder();
     const out = builder.buildObject(result);
@@ -74,3 +55,4 @@ parser.parseString(messageData, (err, result) => {
     fs.writeFileSync(args.messages_file, out);
     console.log(`Done. Replaced ${stats.count} units, skipped ${stats.skip}.`);
 });
+

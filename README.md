@@ -5,25 +5,26 @@ Populate pre-defined translation strings in Angular 2 i18n message files.
 Normally, you'd localize an attribute using the following syntax:
 
 ```
-<component i18n-hello hello="Hello from Localized Component"></component>
+<span i18n="A hello world message for the localized component">Hello!</span>
 ```
 
-This utility makes use of the optional description tag to associate the message with a key.
+This utility makes use of the optional meaning tag to associate the message with an unique key.
 ```
-<component i18n-hello="localized-component-hello" hello="Hello from Localized Component"></component>
+<span i18n="localized.component.hello|A hello world message for the localized component">Hello!</span>
 ```
 
-The key will end-up in the messages file as a "note from description":
+The key will be persisted in the messages file:
 
 ```xml
-<trans-unit id="63587ed5b07c28dbb733d562ffeca4ee181c37c6" datatype="html">
+<trans-unit id="cb5fabf68b14f52c0d7cbc2b90393f8897310ba7" datatype="html">
   <source>Hello!</source>
   <target/>
-  <note priority="1" from="description">localized-component-hello</note>
+  <note priority="1" from="description">A hello world message for the localized component</note>
+  <note priority="1" from="meaning">localized.component.hello</note>
 </trans-unit>
 ```
 
-It can be then looked-up in a manually populated language file to provide a target translation.
+We can be then look it up from a language file to provide a target translation.
 
 ## Language Files
 

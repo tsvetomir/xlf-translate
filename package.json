@@ -2,12 +2,12 @@
   "name": "xlf-translate",
   "version": "0.1.0",
   "description": "Populate XLIFF (.XLF) files with existing translations",
-  "main": "index.js",
+  "main": "translate.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "bin": {
-      "xlf-translate": "./bin/xlf-translate"
+    "xlf-translate": "./bin/xlf-translate"
   },
   "author": "Tsvetomir Tsonev",
   "license": "BSD-3-Clause",
@@ -16,8 +16,11 @@
     "jsonpath": "^0.2.9",
     "xml2js": "^0.4.17"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/tsvetomir/xlf-translate.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsvetomir/xlf-translate.git"
+  },
+  "devDependencies": {
+    "jasmine": "2.5.3"
   }
 }
