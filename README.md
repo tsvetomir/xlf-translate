@@ -56,6 +56,7 @@ You can also force overwriting all translations, regardless if empty or not:
 
 ## See Also
 
+* [Sample usage in an i18n Angular app](https://github.com/tsvetomir/angular-cli-i18n-sample)
 * [Angular 2 - Internationalization (i18n)](https://angular.io/docs/ts/latest/cookbook/i18n.html)
 * [Deploying an i18n Angular app with angular-cli](https://medium.com/@feloy/deploying-an-i18n-angular-app-with-angular-cli-fc788f17e358#.2qlq8lfad)
 
