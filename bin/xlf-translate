@@ -44,10 +44,7 @@ parser.parseString(messageData, (err, result) => {
         throw err;
     }
 
-    //const stats = translate(result, lang, args.force);
-
-    console.log(JSON.stringify(result, null, 2));
-    return
+    const stats = translate(result, lang, args.force);
 
     const builder = new xml.Builder();
     const out = builder.buildObject(result);
