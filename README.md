@@ -1,20 +1,21 @@
 # xlf-translate
 
-Populate pre-defined translation strings in Angular 2 i18n message files.
+Populates translations in XLIFF (.xlf) message files. Specifically developed for [Angular 2 i18n](https://angular.io/docs/ts/latest/cookbook/i18n.html) - enabled apps, but might work for others as well.
+
+## Description
 
 Normally, you'd localize an attribute using the following syntax:
 
-```
+```html
 <span i18n="A hello world message for the localized component">Hello!</span>
 ```
 
 This utility makes use of the optional meaning tag to associate the message with an unique key.
-```
+```html
 <span i18n="localized.component.hello|A hello world message for the localized component">Hello!</span>
 ```
 
-The key will be persisted in the messages file:
-
+The key will be persisted in the messages file as a "meaning":
 ```xml
 <trans-unit id="cb5fabf68b14f52c0d7cbc2b90393f8897310ba7" datatype="html">
   <source>Hello!</source>
@@ -24,23 +25,20 @@ The key will be persisted in the messages file:
 </trans-unit>
 ```
 
-We can then look it up from a language file to provide a target translation.
+This utility will look up the keys in the supplied language file to provide the target translation.
 
 ## Language Files
 
-The language files are in YAML format and contain translations corresponding to the keys in the description.
+The language files contain translations corresponding to the keys in the description.
+For example, the `localized.component.hello` key and its translation are represented as:
 
 ```yaml
 localized:
     component:
         hello: Bonjour!
-        goodbye: Au Revoir!
-
 ```
 
 ## Installation
-
-**NO PUBLISHED VERSION YET**
 
 `npm install -g xlf-translate`
 
@@ -50,7 +48,7 @@ localized:
 
 This will populate all empty target elements in the `messages.xlf` file with matching translations. Non-empty target elements will be skipped to avoid overwriting user translations.
 
-> The file will be overwritten
+> The messages file will be updated in place.
 
 You can also force overwriting all translations, regardless if empty or not:
 
