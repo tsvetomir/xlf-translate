@@ -1,3 +1,5 @@
+'use strict';
+
 const jp = require('jsonpath');
 
 /**
@@ -8,7 +10,7 @@ const jp = require('jsonpath');
  * @return statistics the messages will be filled in-place
  */
 const translate = (messages, lang, force) => {
-    const units = jp.query(messages, "$..['trans-unit']")[0];
+    const units = jp.query(messages, '$..["trans-unit"]')[0];
     let stats = { count: 0, skip: 0 };
 
     units

@@ -4,6 +4,7 @@
   "description": "Populate XLIFF (.XLF) files with existing translations",
   "main": "translate.js",
   "scripts": {
+    "lint": "eslint *.js bin/*",
     "test": "jasmine"
   },
   "bin": {
@@ -21,6 +22,7 @@
     "url": "https://github.com/tsvetomir/xlf-translate.git"
   },
   "devDependencies": {
+    "eslint": "^3.14.1",
     "jasmine": "2.5.3"
   }
 }

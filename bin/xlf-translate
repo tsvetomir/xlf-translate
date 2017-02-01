@@ -9,9 +9,9 @@ const translate = require('../translate');
 const args = (() => {
     const argparse = require('argparse');
     const parser = new argparse.ArgumentParser({
-      version: '0.1.0',
-      addHelp: true,
-      description: 'xlf-translate populates translation files based on keys'
+        version: '0.1.0',
+        addHelp: true,
+        description: 'xlf-translate populates translation files based on keys'
     });
 
     parser.addArgument([ '-l', '--lang-file' ], {
