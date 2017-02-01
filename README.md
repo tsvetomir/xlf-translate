@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/tsvetomir/xlf-translate.svg?branch=master)](https://travis-ci.org/tsvetomir/xlf-translate)
+[![npm version](https://badge.fury.io/js/xlf-translate.svg)](https://badge.fury.io/js/xlf-translate)
 
 # xlf-translate
 
