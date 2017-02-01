@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tsvetomir/xlf-translate.svg?branch=master)](https://travis-ci.org/tsvetomir/xlf-translate)
+
 # xlf-translate
 
 Populates translations in XLIFF (.xlf) message files. Specifically developed for [Angular 2 i18n](https://angular.io/docs/ts/latest/cookbook/i18n.html) - enabled apps, but might work for others as well.
