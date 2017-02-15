@@ -9,7 +9,6 @@ const translate = require('../translate');
 const args = (() => {
     const argparse = require('argparse');
     const parser = new argparse.ArgumentParser({
-        version: '1.0.0',
         addHelp: true,
         description: 'Looks-up translations based on unique keys'
     });

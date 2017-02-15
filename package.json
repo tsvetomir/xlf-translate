@@ -5,6 +5,7 @@
   "main": "translate.js",
   "scripts": {
     "lint": "eslint *.js bin/*",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jasmine"
   },
   "bin": {
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "eslint": "^3.14.1",
-    "jasmine": "2.5.3"
+    "jasmine": "2.5.3",
+    "semantic-release": "^6.3.2"
   }
 }
