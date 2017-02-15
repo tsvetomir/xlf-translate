@@ -9,23 +9,22 @@ const translate = require('../translate');
 const args = (() => {
     const argparse = require('argparse');
     const parser = new argparse.ArgumentParser({
-        version: '0.1.0',
+        version: '1.0.0',
         addHelp: true,
-        description: 'xlf-translate populates translation files based on keys'
+        description: 'Looks-up translations based on unique keys'
+    });
+
+    parser.addArgument('file', {
+        help: 'XLIFF (.xlf) file to translate'
     });
 
     parser.addArgument([ '-l', '--lang-file' ], {
-        help: 'file containing translations (YAML)',
-        required: true
-    });
-
-    parser.addArgument([ '-m', '--messages-file' ], {
-        help: 'messages file to process',
+        help: 'YAML file containing translated messages',
         required: true
     });
 
     parser.addArgument([ '-f', '--force' ], {
-        help: 'overwrites existing translations',
+        help: 'Overwrites existing translation targets',
         defaultValue: false,
         action: 'storeTrue'
     });
@@ -36,7 +35,7 @@ const args = (() => {
 const langData = fs.readFileSync(args.lang_file);
 const lang = yaml.safeLoad(langData);
 
-const messageData = fs.readFileSync(args.messages_file);
+const messageData = fs.readFileSync(args.file);
 const parser = new xml.Parser();
 parser.parseString(messageData, (err, result) => {
     if (err) {
@@ -49,7 +48,7 @@ parser.parseString(messageData, (err, result) => {
     const builder = new xml.Builder();
     const out = builder.buildObject(result);
 
-    fs.writeFileSync(args.messages_file, out);
+    fs.writeFileSync(args.file, out);
     console.log(`Done. Replaced ${stats.count} units, skipped ${stats.skip}.`);
 });
 

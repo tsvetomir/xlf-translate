@@ -47,7 +47,7 @@ localized:
 
 ## Usage
 
-`xlf-translate --lang-file=lang/fr.yml --messages-file=messages.fr.xlf`
+`xlf-translate --lang-file sample/lang/fr.yml sample/messages.fr.xlf`
 
 This will populate all empty target elements in the `messages.xlf` file with matching translations. Non-empty target elements will be skipped to avoid overwriting user translations.
 
@@ -55,7 +55,7 @@ This will populate all empty target elements in the `messages.xlf` file with mat
 
 You can also force overwriting all translations, regardless if empty or not:
 
-`xlf-translate --lang-file=lang/fr.yml --messages-file=messages.fr.xlf --force`
+`xlf-translate --force --lang-file sample/lang/fr.yml sample/messages.fr.xlf`
 
 ## See Also
 
