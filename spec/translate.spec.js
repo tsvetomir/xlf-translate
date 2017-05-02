@@ -2,7 +2,7 @@
 
 const yaml = require('js-yaml');
 const fs = require('fs');
-const xml = require('xml2js');
+const cheerio = require('cheerio');
 const translate = require('../translate');
 
 const lang = {
@@ -18,38 +18,53 @@ describe("translate", function() {
     let messages;
     let units;
 
+    const target = (index, text) => units.eq(index).find('target').text(text);
+
     beforeEach(() => {
-        messages = require('./message-data');
-        units = messages.xliff.file[0].body[0]['trans-unit'];
+        const messageData = fs.readFileSync('./sample/messages.xlf', { encoding: 'utf-8' });
+        messages = cheerio.load(messageData, { xmlMode: true, decodeEntities: false });
+        units = messages('trans-unit');
     });
 
     it("fills tagged units", function() {
         translate(messages, lang);
 
-        expect(units[1].target[0]).toBe(lang.localized.component.hello);
-        expect(units[2].target[0]).toBe(lang.localized.component.goodbye);
+        expect(target(1)).toBe(lang.localized.component.hello);
+        expect(target(2)).toBe(lang.localized.component.goodbye);
     });
 
     it("skips translated tagged units", function() {
-        units[1].target[0] = 'Foo';
+        target(1, 'Foo');
 
         translate(messages, lang);
 
-        expect(units[1].target[0]).toBe('Foo');
+        expect(target(1)).toBe('Foo');
     });
 
     it("overwrites translated tagged units with force", function() {
-        units[1].target[0] = 'Foo';
+        target(1, 'Foo');
 
         translate(messages, lang, true);
 
-        expect(units[1].target[0]).toBe(lang.localized.component.hello);
+        expect(target(1)).toBe(lang.localized.component.hello);
     });
 
     it("skips regular units", function() {
         translate(messages, lang);
 
-        expect(units[0].target[0]).toBe('');
+        expect(target(0)).toBe('');
+    });
+
+    it("skips units with interpolations", function() {
+        translate(messages, lang);
+
+        expect(target(3)).toBe('');
+    });
+
+    it("outputs interpolations", function() {
+        translate(messages, lang);
+
+        expect(units.eq(3).find('source').html()).toBe('Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/>');
     });
 });
 

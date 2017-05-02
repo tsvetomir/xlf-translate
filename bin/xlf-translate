@@ -3,7 +3,7 @@
 
 const yaml = require('js-yaml');
 const fs = require('fs');
-const xml = require('xml2js');
+const cheerio = require('cheerio');
 const translate = require('../translate');
 
 const args = (() => {
@@ -28,26 +28,22 @@ const args = (() => {
         action: 'storeTrue'
     });
 
+    parser.addArgument([ '-e', '--encoding' ], {
+        help: 'Specifies the XLIFF file encoding. Default is "utf-8".',
+        defaultValue: 'utf-8'
+    });
+
     return parser.parseArgs();
 })();
 
 const langData = fs.readFileSync(args.lang_file);
 const lang = yaml.safeLoad(langData);
 
-const messageData = fs.readFileSync(args.file);
-const parser = new xml.Parser();
-parser.parseString(messageData, (err, result) => {
-    if (err) {
-        console.log('Oops, error occurred');
-        throw err;
-    }
+const messageData = fs.readFileSync(args.file, { encoding: args.encoding });
+const messages = cheerio.load(messageData, { xmlMode: true, decodeEntities: false });
+const stats = translate(messages, lang, args.force);
+const out = messages.html();
 
-    const stats = translate(result, lang, args.force);
-
-    const builder = new xml.Builder();
-    const out = builder.buildObject(result);
-
-    fs.writeFileSync(args.file, out);
-    console.log(`Done. Replaced ${stats.count} units, skipped ${stats.skip}.`);
-});
+fs.writeFileSync(args.file, out);
+console.log(`Done. Replaced ${stats.count} units, skipped ${stats.skip}.`);
 

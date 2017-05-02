@@ -14,9 +14,9 @@
   "author": "Tsvetomir Tsonev",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "cheerio": "0.22.0",
     "js-yaml": "^3.7.0",
-    "jsonpath": "^0.2.9",
-    "xml2js": "^0.4.17"
+    "jsonpath": "^0.2.9"
   },
   "repository": {
     "type": "git",
