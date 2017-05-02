@@ -5,28 +5,28 @@ const jp = require('jsonpath');
 /**
  * Fills in translations in XLIFF files based on 'meaning' metadata as a key.
  *
- * @param messages an XLIFF document parsed with xml2js
+ * @param doc an XLIFF document parsed with cheerio
  * @param lang a tree of keys and their corresponding translations
  * @return statistics the messages will be filled in-place
  */
-const translate = (messages, lang, force) => {
-    const units = jp.query(messages, '$..["trans-unit"]')[0];
+const translate = (doc, lang, force) => {
+    const units = doc('trans-unit').toArray();
     let stats = { count: 0, skip: 0 };
 
     units
-        .filter(hasNotes)
+        .filter(unit => doc(unit).find('note').length > 0)
         .map(unit => ({
-            target: unit.target,
-            id: meaning(unit)
+            target: doc(unit).find('target'),
+            id: doc(unit).find('note[from=meaning]').text()
         }))
-        .filter(d => isKey(d.id))
+        .filter(d => d.id && isKey(d.id))
         .forEach(d => {
             const query = '$.' + d.id;
             const match = jp.query(lang, query);
 
             if (match.length === 1) {
-                if (d.target[0] === '' || force) {
-                    d.target[0] = match[0];
+                if (d.target.text() === '' || force) {
+                    d.target.text(match[0]);
                     stats.count++;
                 } else if (!force) {
                     stats.skip++;
@@ -37,9 +37,8 @@ const translate = (messages, lang, force) => {
     return stats;
 };
 
+
 const isKey = val => !!val.match(/^[a-zA-Z0-9.]*$/);
-const hasNotes = u => !!u.note;
-const meaning = unit => unit.note.find(note => note['$'].from === 'meaning')['_'];
 
 module.exports = translate;
 

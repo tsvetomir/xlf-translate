@@ -20,6 +20,11 @@
         <note priority="1" from="description">A goodbye message for the localized component</note>
         <note priority="1" from="meaning">localized.component.goodbye</note>
       </trans-unit>
+      <trans-unit id="225c24c98a62f1f8974e1c1206f6eac06d7e5b62" datatype="html">
+        <source>Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/></source>
+        <target/>
+        <note priority="1" from="description">Info création par qui / quand</note>
+      </trans-unit>
     </body>
   </file>
 </xliff>
