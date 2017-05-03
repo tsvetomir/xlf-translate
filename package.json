@@ -1,6 +1,6 @@
 {
   "name": "xlf-translate",
-  "version": "0.1.0",
+  "version": "0.0.0-semantically-released",
   "description": "Populate XLIFF (.XLF) files with existing translations",
   "main": "translate.js",
   "scripts": {
