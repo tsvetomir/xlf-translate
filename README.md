@@ -5,6 +5,8 @@
 
 Populates translations in XLIFF (.xlf) message files. Specifically developed for [Angular 2 i18n](https://angular.io/docs/ts/latest/cookbook/i18n.html) - enabled apps, but might work for others as well.
 
+**Check out my blog post on [Making Sense of Angular Internationalization (i18n)](https://medium.com/@t_tsonev/making-sense-of-angular-internationalization-i18n-e7b26fb9c587)**
+
 ## Description
 
 Normally, you'd localize an attribute using the following syntax:
