@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="af2ccf4b5dba59616e92cf1531505af02da8f6d2" datatype="html">
+        <source>Hello i18n!</source>
+        <note priority="1" from="description">An introduction header for this sample</note>
+        <note priority="1" from="meaning">User welcome</note>
+      </trans-unit>
+      <trans-unit id="cb5fabf68b14f52c0d7cbc2b90393f8897310ba7" datatype="html">
+        <source>Hello!</source>
+        <note priority="1" from="description">A hello world message for the localized component</note>
+        <note priority="1" from="meaning">localized.component.hello</note>
+      </trans-unit>
+      <trans-unit id="ba95e06a57c2a716c89e1a9b4fa30f51652e016a" datatype="html">
+        <source>Good bye!</source>
+        <note priority="1" from="description">A goodbye message for the localized component</note>
+        <note priority="1" from="meaning">localized.component.goodbye</note>
+      </trans-unit>
+      <trans-unit id="225c24c98a62f1f8974e1c1206f6eac06d7e5b62" datatype="html">
+        <source>Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/></source>
+        <note priority="1" from="description">Info création par qui / quand</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
