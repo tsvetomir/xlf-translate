@@ -9,7 +9,8 @@ const lang = {
     "localized": {
         "component": {
             "hello": "Bonjour!",
-            "goodbye": "Au Revoir!"
+            "goodbye": "Au Revoir!",
+            "1": "un"
         }
     }
 };
@@ -31,6 +32,7 @@ describe("translate", function() {
 
         expect(target(1)).toBe(lang.localized.component.hello);
         expect(target(2)).toBe(lang.localized.component.goodbye);
+        expect(target(3)).toBe(lang.localized.component["1"]);
     });
 
     it("skips translated tagged units", function() {
@@ -58,13 +60,13 @@ describe("translate", function() {
     it("skips units with interpolations", function() {
         translate(messages, lang);
 
-        expect(target(3)).toBe('');
+        expect(target(4)).toBe('');
     });
 
     it("outputs interpolations", function() {
         translate(messages, lang);
 
-        expect(units.eq(3).find('source').html()).toBe('Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/>');
+        expect(units.eq(4).find('source').html()).toBe('Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/>');
     });
 
     describe("with no target", function() {
