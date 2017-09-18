@@ -66,5 +66,21 @@ describe("translate", function() {
 
         expect(units.eq(3).find('source').html()).toBe('Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/>');
     });
+
+    describe("with no target", function() {
+        beforeEach(() => {
+            const messageData = fs.readFileSync('./sample/messages.no-target.xlf', { encoding: 'utf-8' });
+            messages = cheerio.load(messageData, { xmlMode: true, decodeEntities: false });
+            units = messages('trans-unit');
+        });
+
+        it("fills tagged units", function() {
+            translate(messages, lang);
+
+            expect(target(1)).toBe(lang.localized.component.hello);
+            expect(target(2)).toBe(lang.localized.component.goodbye);
+        });
+    });
+
 });
 
