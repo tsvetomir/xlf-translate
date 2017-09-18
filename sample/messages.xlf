@@ -20,6 +20,12 @@
         <note priority="1" from="description">A goodbye message for the localized component</note>
         <note priority="1" from="meaning">localized.component.goodbye</note>
       </trans-unit>
+      <trans-unit id="b0459823058205380235820538108f51652e016a" datatype="html">
+        <source>One</source>
+        <target/>
+        <note priority="1" from="description">A message with non-alpha characters</note>
+        <note priority="1" from="meaning">localized.component.1</note>
+      </trans-unit>
       <trans-unit id="225c24c98a62f1f8974e1c1206f6eac06d7e5b62" datatype="html">
         <source>Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/></source>
         <target/>

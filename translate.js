@@ -36,7 +36,8 @@ const translate = (doc, lang, force) => {
         })
         .filter(d => d.id && isKey(d.id))
         .forEach(d => {
-            const query = '$.' + d.id;
+            const parts = d.id.split('.').map(part => `['${part}']`);
+            const query = '$' + parts.join('');
             const match = jp.query(lang, query);
 
             if (match.length === 1) {
