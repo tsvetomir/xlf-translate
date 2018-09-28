@@ -54,7 +54,7 @@ const translate = (doc, lang, force) => {
 };
 
 
-const isKey = val => !!val.match(/^[a-zA-Z0-9.]*$/);
+const isKey = val => !!val.match(/^[a-zA-Z0-9.\-\_]*$/);
 
 module.exports = translate;
 
