@@ -16,7 +16,7 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "js-yaml": "^3.7.0",
-    "jsonpath": "^0.2.9"
+    "jsonpath": "^1.0.0"
   },
   "repository": {
     "type": "git",
