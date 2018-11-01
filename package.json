@@ -5,7 +5,6 @@
   "main": "translate.js",
   "scripts": {
     "lint": "eslint *.js bin/*",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "jasmine"
   },
   "bin": {
@@ -23,8 +22,8 @@
     "url": "https://github.com/tsvetomir/xlf-translate.git"
   },
   "devDependencies": {
-    "eslint": "^3.14.1",
-    "jasmine": "2.5.3",
-    "semantic-release": "^6.3.2"
+    "eslint": "^5.8.0",
+    "jasmine": "3.3.0",
+    "semantic-release": "^15.10.6"
   }
 }
