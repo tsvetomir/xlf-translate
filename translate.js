@@ -34,15 +34,15 @@ const translate = (doc, lang, force) => {
                 id: doc(unit).find('note[from=meaning]').text()
             };
         })
-        .filter(d => d.id && isKey(d.id))
-        .forEach(d => {
-            const parts = d.id.split('.').map(part => `['${part}']`);
+        .filter(({ id }) => id && isKey(id))
+        .forEach(({ id, target }) => {
+            const parts = id.split('.').map(part => `['${part}']`);
             const query = '$' + parts.join('');
             const match = jp.query(lang, query);
 
             if (match.length === 1) {
-                if (d.target.text() === '' || force) {
-                    d.target.text(match[0]);
+                if (target.text() === '' || force) {
+                    target.text(match[0]);
                     stats.count++;
                 } else if (!force) {
                     stats.skip++;
