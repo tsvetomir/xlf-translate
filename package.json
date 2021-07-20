@@ -8,8 +8,8 @@
     "src"
   ],
   "scripts": {
-    "lint": "eslint *.js bin/*",
-    "test": "jasmine"
+    "lint": "eslint {spec,src}/**/*.js bin/*",
+    "test": "jest"
   },
   "bin": {
     "xlf-translate": "./bin/xlf-translate"
@@ -26,8 +26,9 @@
     "url": "https://github.com/tsvetomir/xlf-translate.git"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
-    "jasmine": "3.3.0",
+    "eslint": "^7.31.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "jest-cli": "^26.6.3",
     "semantic-release": "^15.10.6"
   }
 }
