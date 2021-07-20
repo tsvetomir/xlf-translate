@@ -81,6 +81,18 @@ describe('translate', function() {
             expect(target(1)).toBe(lang.localized.component.hello);
             expect(target(2)).toBe(lang.localized.component.goodbye);
         });
+
+        it('does not add targets to non-tagged units', function() {
+            translate(messages, lang);
+
+            expect(units.eq(0).find('target').length).toBe(0);
+        });
+
+        it('does not add targets to tagged units without translations', function() {
+            translate(messages, lang);
+
+            expect(units.eq(3).find('target').length).toBe(0);
+        });
     });
 
 });

@@ -17,6 +17,11 @@
         <note priority="1" from="description">A goodbye message for the localized component</note>
         <note priority="1" from="meaning">localized.component.goodbye</note>
       </trans-unit>
+      <trans-unit id="ba95e06a57c2a716c89e1a9b4fa30f51652e016a" datatype="html">
+        <source>Not translated.</source>
+        <note priority="1" from="description">A message with missing translation for the localized component</note>
+        <note priority="1" from="meaning">localized.component.not_translated</note>
+      </trans-unit>
       <trans-unit id="225c24c98a62f1f8974e1c1206f6eac06d7e5b62" datatype="html">
         <source>Créé par <x id="INTERPOLATION"/> le <x id="INTERPOLATION_1"/></source>
         <note priority="1" from="description">Info création par qui / quand</note>
