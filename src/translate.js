@@ -22,6 +22,25 @@ const translate = (doc, lang, force) => {
         .map(unit => doc(unit))
         .filter(unit => unit.find('note').length > 0)
         .map(unit => {
+            return {
+                unit: unit,
+                id: doc(unit).find('note[from=meaning]').text()
+            };
+        })
+        .filter(({ id }) => id && isKey(id))
+        .map(({ id, unit }) => {
+            const parts = id.split('.').map(part => `['${part}']`);
+            const query = '$' + parts.join('');
+            const match = jp.query(lang, query);
+
+            return {
+                found: match.length === 1,
+                text: match[0],
+                unit: unit
+            };
+        })
+        .filter(({ found }) => found)
+        .map(({ id, unit, text }) => {
             const source = unit.find('source');
             let target = unit.find('target');
             if (target.length === 0 && source.length === 1) {
@@ -31,22 +50,15 @@ const translate = (doc, lang, force) => {
 
             return {
                 target: target,
-                id: doc(unit).find('note[from=meaning]').text()
+                text: text
             };
         })
-        .filter(({ id }) => id && isKey(id))
-        .forEach(({ id, target }) => {
-            const parts = id.split('.').map(part => `['${part}']`);
-            const query = '$' + parts.join('');
-            const match = jp.query(lang, query);
-
-            if (match.length === 1) {
-                if (target.text() === '' || force) {
-                    target.text(match[0]);
-                    stats.count++;
-                } else if (!force) {
-                    stats.skip++;
-                }
+        .forEach(({ target, text }) => {
+            if (target.text() === '' || force) {
+                target.text(text);
+                stats.count++;
+            } else if (!force) {
+                stats.skip++;
             }
         });
 
