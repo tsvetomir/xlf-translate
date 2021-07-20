@@ -2,10 +2,14 @@
   "name": "xlf-translate",
   "version": "0.0.0-semantically-released",
   "description": "Populate XLIFF (.XLF) files with existing translations",
-  "main": "translate.js",
+  "main": "src/translate.js",
+  "files": [
+    "bin",
+    "src"
+  ],
   "scripts": {
-    "lint": "eslint *.js bin/*",
-    "test": "jasmine"
+    "lint": "eslint {spec,src}/**/*.js bin/*",
+    "test": "jest"
   },
   "bin": {
     "xlf-translate": "./bin/xlf-translate"
@@ -13,8 +17,9 @@
   "author": "Tsvetomir Tsonev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "cheerio": "^0.22.0",
-    "js-yaml": "^3.7.0",
+    "argparse": "^2.0.1",
+    "cheerio": "^1.0.0-rc.10",
+    "js-yaml": "^4.1.0",
     "jsonpath": "^1.0.0"
   },
   "repository": {
@@ -22,8 +27,9 @@
     "url": "https://github.com/tsvetomir/xlf-translate.git"
   },
   "devDependencies": {
-    "eslint": "^5.8.0",
-    "jasmine": "3.3.0",
-    "semantic-release": "^15.10.6"
+    "eslint": "^7.31.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "jest-cli": "^26.6.3",
+    "semantic-release": "^17.4.4"
   }
 }

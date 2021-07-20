@@ -4,40 +4,40 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 const cheerio = require('cheerio');
-const translate = require('../translate');
+const translate = require('../src/translate');
 
 const args = (() => {
     const argparse = require('argparse');
     const parser = new argparse.ArgumentParser({
-        addHelp: true,
+        add_help: true,
         description: 'Looks-up translations based on unique keys'
     });
 
-    parser.addArgument('file', {
+    parser.add_argument('file', {
         help: 'XLIFF (.xlf) file to translate'
     });
 
-    parser.addArgument([ '-l', '--lang-file' ], {
+    parser.add_argument('-l', '--lang-file', {
         help: 'YAML file containing translated messages',
         required: true
     });
 
-    parser.addArgument([ '-f', '--force' ], {
+    parser.add_argument('-f', '--force', {
         help: 'Overwrites existing translation targets',
-        defaultValue: false,
-        action: 'storeTrue'
+        default: false,
+        action: 'store_true'
     });
 
-    parser.addArgument([ '-e', '--encoding' ], {
+    parser.add_argument('-e', '--encoding', {
         help: 'Specifies the XLIFF file encoding. Default is "utf-8".',
-        defaultValue: 'utf-8'
+        default: 'utf-8'
     });
 
-    return parser.parseArgs();
+    return parser.parse_args();
 })();
 
 const langData = fs.readFileSync(args.lang_file);
-const lang = yaml.safeLoad(langData);
+const lang = yaml.load(langData);
 
 const messageData = fs.readFileSync(args.file, { encoding: args.encoding });
 const messages = cheerio.load(messageData, { xmlMode: true, decodeEntities: false });
