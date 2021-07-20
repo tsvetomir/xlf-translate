@@ -29,6 +29,6 @@
     "eslint": "^7.31.0",
     "eslint-plugin-jest": "^24.3.6",
     "jest-cli": "^26.6.3",
-    "semantic-release": "^15.10.6"
+    "semantic-release": "^17.4.4"
   }
 }
