@@ -40,7 +40,7 @@ const translate = (doc, lang, force) => {
             };
         })
         .filter(({ found }) => found)
-        .map(({ id, unit, text }) => {
+        .map(({ unit, text }) => {
             const source = unit.find('source');
             let target = unit.find('target');
             if (target.length === 0 && source.length === 1) {
