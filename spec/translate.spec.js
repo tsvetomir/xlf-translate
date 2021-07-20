@@ -3,7 +3,7 @@
 const yaml = require('js-yaml');
 const fs = require('fs');
 const cheerio = require('cheerio');
-const translate = require('../translate');
+const translate = require('../src/translate');
 
 const lang = {
     "localized": {
