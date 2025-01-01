@@ -10,6 +10,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+
     steps:
       - name: Check out branch
         uses: actions/checkout@v4
@@ -23,6 +29,9 @@ jobs:
 
       - name: Install modules
         run: npm ci --no-audit --ignore-scripts
+
+      - name: Verify the integrity of installed dependencies
+        run: npm audit signatures
 
       - name: Lint
         run: npm run lint
