@@ -85,13 +85,13 @@ describe('translate', function() {
         it('does not add targets to non-tagged units', function() {
             translate(messages, lang);
 
-            expect(units.eq(0).find('target').length).toBe(0);
+            expect(units.eq(0).find('target')).toHaveLength(0);
         });
 
         it('does not add targets to tagged units without translations', function() {
             translate(messages, lang);
 
-            expect(units.eq(3).find('target').length).toBe(0);
+            expect(units.eq(3).find('target')).toHaveLength(0);
         });
     });
 
