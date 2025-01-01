@@ -1,8 +1,7 @@
-'use strict';
-
-const fs = require('fs');
-const cheerio = require('cheerio');
-const translate = require('../src/translate');
+import * as cheerio from 'cheerio';
+import fs from 'fs';
+import { beforeEach, describe, expect, it } from 'vitest';
+import translate from '../src/translate.js';
 
 const lang = {
     'localized': {

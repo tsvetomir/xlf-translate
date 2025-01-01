@@ -1,6 +1,6 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import pluginJest from 'eslint-plugin-jest';
+import vitest from "@vitest/eslint-plugin";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -18,15 +18,10 @@ export default [
   {
     // update this to match your test files
     files: ['**/*.spec.js', '**/*.test.js'],
-    plugins: { jest: pluginJest },
-    languageOptions: {
-      globals: pluginJest.environments.globals.globals,
-    },
+    languageOptions: { sourceType: 'module' },
+    plugins: { vitest },
     rules: {
-      'jest/no-disabled-tests': 'warn',
-      'jest/no-focused-tests': 'error',
-      'jest/no-identical-title': 'error',
-      'jest/valid-expect': 'error',
+      ...vitest.configs.recommended.rules
     },
   },
   { languageOptions: { globals: globals.browser } },
