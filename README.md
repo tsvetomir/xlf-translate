@@ -1,11 +1,8 @@
-[![Build Status](https://travis-ci.org/tsvetomir/xlf-translate.svg?branch=master)](https://travis-ci.org/tsvetomir/xlf-translate)
 [![npm version](https://badge.fury.io/js/xlf-translate.svg)](https://badge.fury.io/js/xlf-translate)
 
 # xlf-translate
 
-Populates translations in XLIFF (.xlf) message files. Specifically developed for [Angular 2 i18n](https://angular.io/docs/ts/latest/cookbook/i18n.html) - enabled apps, but might work for others as well.
-
-**Check out my blog post on [Making Sense of Angular Internationalization (i18n)](https://medium.com/@t_tsonev/making-sense-of-angular-internationalization-i18n-e7b26fb9c587)**
+Populates translations in XLIFF (.xlf) message files. Specifically developed for [Angular i18n](https://angular.dev/guide/i18n) - enabled apps, but might work for others as well.
 
 ## Description
 
@@ -62,6 +59,4 @@ You can also force overwriting all translations, regardless if empty or not:
 ## See Also
 
 * [Sample usage in an i18n Angular app](https://github.com/tsvetomir/angular-cli-i18n-sample)
-* [Angular 2 - Internationalization (i18n)](https://angular.io/docs/ts/latest/cookbook/i18n.html)
-* [Deploying an i18n Angular app with angular-cli](https://medium.com/@feloy/deploying-an-i18n-angular-app-with-angular-cli-fc788f17e358#.2qlq8lfad)
-
+* [Angular - Internationalization (i18n)](https://angular.dev/guide/i18n)
