@@ -1,10 +1,27 @@
 'use strict';
 
-const jp = require('jsonpath');
-
 const indent = node => {
     const indent = node.parent().html().match(/^\s+/);
     return indent !== null ? indent[0] : '';
+};
+
+function query(obj, id) {
+    if (typeof id !== 'string') {
+        return null;
+    }
+
+    const parts = id.split('.');
+    if (!Object.hasOwnProperty.call(obj, parts[0])) {
+        return null;
+    }
+
+    const value = obj[parts[0]];
+    if (parts.length === 1) {
+        return value;
+    } else {
+        const subid = parts.slice(1).join('.');
+        return query(value, subid);
+    }
 };
 
 /**
@@ -29,13 +46,11 @@ const translate = (doc, lang, force) => {
         })
         .filter(({ id }) => id && isKey(id))
         .map(({ id, unit }) => {
-            const parts = id.split('.').map(part => `['${part}']`);
-            const query = '$' + parts.join('');
-            const match = jp.query(lang, query);
+            const match = query(lang, id);
 
             return {
-                found: match.length === 1,
-                text: match[0],
+                found: match !== null,
+                text: match,
                 unit: unit
             };
         })
