@@ -8,24 +8,25 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    environment: upload
 
     permissions:
+      id-token: write
       contents: write
       issues: write
       pull-requests: write
-      id-token: write
 
     steps:
       - name: Check out branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Fetch all branches
 
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
+      - name: Use Node.js v24
+        uses: actions/setup-node@v6
         with:
-          node-version: 20.x
+          node-version: 24.x
 
       - name: Install modules
         run: npm ci --no-audit --ignore-scripts
@@ -36,8 +37,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Set up semantic-release
+        run: |
+          npm install --global --ignore-scripts semantic-release@25.0.3
+
       - name: Publish release
         run: npx semantic-release
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
